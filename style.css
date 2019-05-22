@@ -1,3 +1,8 @@
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
 .container{
     display: flex;
     background-color: orangered;
@@ -7,7 +12,11 @@
     /* align-content: center; */
     /* position: relative; */
     /* top: 200px; */
-    border: solid 2px greenyellow;
+    /* border: solid 2px greenyellow; */
+
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 
 .container h1{
