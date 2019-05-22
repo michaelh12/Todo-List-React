@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    background-color: aquamarine;
+    border: 5px solid orange;
+    justify-content: center;
+    align-items: center;
+    /* align-content: center; */
+}
+
+.container h1{
+    margin-right: 5px;
+}
