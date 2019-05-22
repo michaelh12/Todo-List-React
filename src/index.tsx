@@ -32,19 +32,25 @@ export default function App(): JSX.Element {
     const addTodo = (text: string): void => {
         const newTodos: ITodo[] = [...todos, { text, complete: false }];
         setTodos(newTodos);
+        return;
     };
 
     const completeTodo = (index: number): void => {
         const newTodos: ITodo[] = [...todos];
         newTodos[index].complete = !newTodos[index].complete;
         setTodos(newTodos);
+        return;
     };
 
-    const deleteTodo = (index: number) => {
-        const updatedTodos: ITodo[] = todos.filter((todo: ITodo, indx: number) => {
-            return indx !== index;
-        })
+    const deleteTodo = (index: number): void => {
+        // const updatedTodos: ITodo[] = todos.filter((todo: ITodo, indx: number) => {
+        //     return indx !== index;
+        // })
+        //updating to use splice instead because makes for readable code
+        const updatedTodos: ITodo[] = [...todos];
+        updatedTodos.splice(index, 1);
         setTodos(updatedTodos);
+        return;
     }
 
     return (
@@ -69,7 +75,7 @@ export default function App(): JSX.Element {
                             {' '}
                             {todo.complete ? 'Incomplete' : 'Complete'}
                         </button>
-                        <button type="button" onClick={() => { deleteTodo(index) }}>Delete</button>
+                        <button type="button" onClick={() => { deleteTodo(index) }}>&times;</button>
                     </Fragment>
                 )}
             </section>
