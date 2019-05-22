@@ -29,9 +29,22 @@ export default function App(): JSX.Element {
     //console log todos variable
     console.log('todos variable', todos)
 
-    const addTodo = (text: string) => {
+    const addTodo = (text: string): void => {
         const newTodos: ITodo[] = [...todos, { text, complete: false }];
         setTodos(newTodos);
+    };
+
+    const completeTodo = (index: number): void => {
+        const newTodos: ITodo[] = [...todos];
+        newTodos[index].complete = !newTodos[index].complete;
+        setTodos(newTodos);
+    };
+
+    const deleteTodo = (index: number) => {
+        const updatedTodos: ITodo[] = todos.filter((todo: ITodo, indx: number) => {
+            return indx !== index;
+        })
+        setTodos(updatedTodos);
     }
 
     return (
@@ -50,10 +63,17 @@ export default function App(): JSX.Element {
 
             <section>
                 {todos.map((todo: ITodo, index: number) =>
-                    <div key={index}>{todo.text} ping </div>
+                    <Fragment key={index} >
+                        <div style={{ textDecoration: todo.complete ? 'line-through' : '' }}>{todo.text} ping </div>
+                        <button type="button" onClick={() => completeTodo(index)}>
+                            {' '}
+                            {todo.complete ? 'Incomplete' : 'Complete'}
+                        </button>
+                        <button type="button" onClick={() => { deleteTodo(index) }}>Delete</button>
+                    </Fragment>
                 )}
             </section>
-        </Fragment>
+        </Fragment >
     )
 }
 
